@@ -1,8 +1,10 @@
 package task;
 
-public class Biblioteca {
-    private static Libro[] libros = new Libro[24]; //Utilizamos static pq estamos en un contexto estatico.
+import java.sql.SQLOutput;
 
+public class Biblioteca {
+
+    private static Libro[] libros = new Libro[24]; //Utilizamos static pq estamos en un contexto estatico.
     private Thread[] escritores = new Thread[10];
     private Thread[] lectores = new Thread[20];
 
@@ -10,17 +12,20 @@ public class Biblioteca {
 
         //Se crean los libros primero...
         for (int i=0; i< libros.length;i++){
+            System.out.println("creando libros" + i);
             libros[i]=new Libro(i);
         }
 
         //Inicializo los escritores segundo
         for (int i = 0; i < escritores.length; i++) {
+            System.out.println("creando escritores");
             escritores[i] = new Thread(new Escritor());
             escritores[i].start();
         }
 
         //Inicializo los lectores
         for (int i = 0; i < lectores.length; i++) {
+            System.out.println("creando lectores");
             lectores[i] = new Thread(new Lector());
             lectores[i].start();
         }

@@ -17,6 +17,8 @@ public class Libro {
         versionFinal=false;
         lock=new ReentrantReadWriteLock();
         this.id = id;
+        readsKey=new Object();
+        reviewsKey = new Object();
     }
 
     public ReadWriteLock getLock() {

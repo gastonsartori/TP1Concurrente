@@ -7,18 +7,20 @@ import static java.lang.Thread.sleep;
 public class Lector implements Runnable {
 
     Random rand = new Random(); //se usa para ver los tiempos en mls.
-    private ArrayList<Integer> librosLeidosVF; //se usa para ver los indices de los libros leidos en version final.
+    private ArrayList<Integer> librosLeidosVF = new ArrayList<>(); //se usa para ver los indices de los libros leidos en version final.
     private Libro[] libros = Biblioteca.getLibros(); //tiene los libros de la biblioteca
 
     @Override
     public void run() {
 
+        System.out.println("arranco lector " + Thread.currentThread().getName());
         while(librosLeidosVF.size() < 24){
-            int i = rand.nextInt(23); //Elije un nro random para ubicar el indice del libro
+            int i = rand.nextInt(24); //Elije un nro random para ubicar el indice del libro
             if( !librosLeidosVF.contains(i) ){
                 leerLibro(libros[i]);
             }
         }
+        System.out.println("termino lector" + Thread.currentThread().getName());
     }
 
     //TODO Los escritores tienen prioridad por sobre los lectores en el acceso a un libro.

@@ -11,6 +11,8 @@ public class Main {
      TODO: agregar log c/2 seg
           -Cantidad de libros con la totalidad de escritores que lo revisaron (atributo reviews)
           -Cantidad de libros con la totalidad de lecturas (atributo reads)
+
+     TODO: VERIFICAR TODOS LOS LIBROS AL FINALIZAR LA EJECUCION
      */
     }
 }
