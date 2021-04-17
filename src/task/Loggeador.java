@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 public class Loggeador {
 
     public void escribir(String cadena){
-        try(FileWriter file= new FileWriter( "C://Users//Emi//Desktop//log.txt");
+        try(FileWriter file= new FileWriter( "C://Users//Emi//Desktop//log.txt", true);
             PrintWriter pw= new PrintWriter(file);){
             pw.println(cadena);
         } catch (FileNotFoundException e) {
