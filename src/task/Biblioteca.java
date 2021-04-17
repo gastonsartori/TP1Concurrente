@@ -1,6 +1,5 @@
 package task;
 
-
 public class Biblioteca {
 
     private static Libro[] libros = new Libro[24]; //Utilizamos static pq estamos en un contexto estatico.
@@ -11,7 +10,6 @@ public class Biblioteca {
         for (int i=0; i< libros.length;i++){
             libros[i]=new Libro(i);
         }
-
     }
 
     public boolean verify(){
