@@ -19,7 +19,6 @@ public class Escritor implements Runnable{
                 revisarLibro(libros[i]);
             }
         }
-        System.out.println("TODOS LOS LIBROS ESTAN REVISADOS por: "+Thread.currentThread().getName());
     }
 
     public void revisarLibro(Libro libro){

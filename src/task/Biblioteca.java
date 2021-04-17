@@ -1,6 +1,5 @@
 package task;
 
-import java.sql.SQLOutput;
 
 public class Biblioteca {
 
@@ -12,20 +11,17 @@ public class Biblioteca {
 
         //Se crean los libros primero...
         for (int i=0; i< libros.length;i++){
-            System.out.println("creando libros" + i);
             libros[i]=new Libro(i);
         }
 
         //Inicializo los escritores segundo
         for (int i = 0; i < escritores.length; i++) {
-            System.out.println("creando escritores");
             escritores[i] = new Thread(new Escritor());
             escritores[i].start();
         }
 
         //Inicializo los lectores
         for (int i = 0; i < lectores.length; i++) {
-            System.out.println("creando lectores");
             lectores[i] = new Thread(new Lector());
             lectores[i].start();
         }
@@ -53,5 +49,29 @@ public class Biblioteca {
 
     public static Libro[] getLibros() {
         return libros;
+    }
+
+    public String estadoActual(){
+        String cadena= "Cantidad de libros revisados por todos los escritores: " + revisionesFinales() + "\n" + "Cantidad de libros leidos por todos los lectores en versión final: " + lecturasFinales();
+        return cadena;
+    }
+
+    public int lecturasFinales(){
+        int cont=0;
+        for (int i = 0; i < libros.length; i++) {
+            if (libros[i].isLecturaFinal()) {
+                cont++;
+            }
+        }
+        return cont;
+    }
+    public int revisionesFinales(){
+        int cont=0;
+        for (int i = 0; i < libros.length; i++) {
+            if (libros[i].isVersionFinal()) {
+                cont++;
+            }
+        }
+        return cont;
     }
 }
