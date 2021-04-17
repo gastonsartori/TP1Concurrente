@@ -1,0 +1,12 @@
+Cantidad de libros revisados por todos los escritores: 0
+Cantidad de libros leidos por todos los lectores en versión final: 0
+Cantidad de libros revisados por todos los escritores: 24
+Cantidad de libros leidos por todos los lectores en versión final: 5
+Cantidad de libros revisados por todos los escritores: 24
+Cantidad de libros leidos por todos los lectores en versión final: 24
+Cantidad de libros revisados por todos los escritores: 0
+Cantidad de libros leidos por todos los lectores en versión final: 0
+Cantidad de libros revisados por todos los escritores: 24
+Cantidad de libros leidos por todos los lectores en versión final: 8
+Cantidad de libros revisados por todos los escritores: 24
+Cantidad de libros leidos por todos los lectores en versión final: 24

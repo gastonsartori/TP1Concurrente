@@ -10,6 +10,7 @@ public class Main {
 	    boolean finish = false;
 	    Loggeador logger = new Loggeador();
 
+
 	    while(!finish){
 
             logger.escribir(biblioteca.estadoActual());
