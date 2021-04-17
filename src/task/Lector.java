@@ -14,8 +14,10 @@ public class Lector implements Runnable {
     public void run() {
         while(librosLeidosVF.size() < 24){
             int i = rand.nextInt(24); //Elije un nro random para ubicar el indice del libro
-            if( !librosLeidosVF.contains(i) ){
-                leerLibro(libros[i]);
+            if(!(libros[i].getLock().isWriteLocked()) && !(libros[i].getLock().hasQueuedThreads())){
+                if( !librosLeidosVF.contains(i) ){
+                    leerLibro(libros[i]);
+                }
             }
         }
     }

@@ -37,7 +37,7 @@ public class Main {
                 finish = finish && (escritores[i].getState() == Thread.State.TERMINATED);
             }
             try {
-                Thread.currentThread().sleep(2000);
+                Thread.currentThread().sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -1,14 +1,13 @@
 package task;
 
-import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class Libro {
 
     private int reviews, reads, id;
     private boolean versionFinal, lecturaFinal;
-    private ReadWriteLock lock;
-    private Object readsKey, reviewsKey;
+    private ReentrantReadWriteLock lock;
+    private Object readsKey;
 
 
     public Libro(int id) {
@@ -19,10 +18,9 @@ public class Libro {
         lock=new ReentrantReadWriteLock();
         this.id = id;
         readsKey=new Object();
-        reviewsKey = new Object();
     }
 
-    public ReadWriteLock getLock() {
+    public ReentrantReadWriteLock getLock() {
         return lock;
     }
     public int getId() { return id; }
@@ -49,11 +47,9 @@ public class Libro {
         }
     }
     public void incReviews(){
-        synchronized (reviewsKey){
             reviews++;
             if(this.reviews == 10){
                 versionFinal = true;
-            }
         }
     }
 }

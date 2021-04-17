@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import static java.lang.Thread.sleep;
 
-
 public class Escritor implements Runnable{
 
     Random rand = new Random();
@@ -28,9 +27,10 @@ public class Escritor implements Runnable{
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally{
+            libro.incReviews();
+            librosRevisados.add(libro.getId()); //no se controla porque es de este Thread
             libro.getLock().writeLock().unlock();
         }
-        libro.incReviews();
-        librosRevisados.add(libro.getId()); //no se controla porque es de este Thread
+
     }
 }
