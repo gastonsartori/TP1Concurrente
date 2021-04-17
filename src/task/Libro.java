@@ -25,6 +25,13 @@ public class Libro {
     public ReadWriteLock getLock() {
         return lock;
     }
+    public int getId() { return id; }
+
+    public int getReviews() { return reviews; }
+
+    public int getReads() {
+        return reads;
+    }
 
     public boolean isVersionFinal() {
         return versionFinal;
@@ -32,10 +39,6 @@ public class Libro {
 
     public boolean isLecturaFinal() { return lecturaFinal;}
 
-    //Metodo para revisar que el libro este verificado(reads=20 && reviews=10)
-    public boolean isVerificado(){ return (versionFinal && reads==20); }
-
-    public int getId() { return id; }
 
     public void incReads(){
         synchronized (readsKey){

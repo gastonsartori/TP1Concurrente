@@ -9,7 +9,7 @@ public class Loggeador {
 
     public void escribir(String cadena){
         try(FileWriter file= new FileWriter( "log.txt", true);
-            PrintWriter pw= new PrintWriter(file);){
+            PrintWriter pw= new PrintWriter(file)){
             pw.println(cadena);
         } catch (FileNotFoundException e) {
             e.printStackTrace();

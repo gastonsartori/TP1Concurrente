@@ -14,11 +14,10 @@ public class Biblioteca {
 
     }
 
-    //TODO: revisar que se ejecute solo al finalizar.
     public boolean verify(){
         int cont = 0;
         for (int i = 0; i < libros.length; i++) {
-            if(libros[i].isVerificado()){
+            if(libros[i].getReads() == 20 && libros[i].getReviews() == 10){
                 cont++;
             }
         }
