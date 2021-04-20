@@ -2,7 +2,7 @@ package task;
 
 public class Biblioteca {
 
-    private static Libro[] libros = new Libro[24]; //Utilizamos static pq estamos en un contexto estatico.
+    private static Libro[] libros = new Libro[24]; //Utilizamos static pq estamos en un contexto estático.
 
     public Biblioteca() {
 

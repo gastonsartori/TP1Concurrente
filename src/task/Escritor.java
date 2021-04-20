@@ -13,8 +13,8 @@ public class Escritor implements Runnable{
     @Override
     public void run() {
         while(librosRevisados.size() < 24){
-            int i = rand.nextInt(24); //Elije un nro random para ubicar el indice del libro
-            if( !librosRevisados.contains(i) ){
+            int i = rand.nextInt(24); //Elige un nro random para ubicar el indice del libro
+            if(!librosRevisados.contains(i)){
                 revisarLibro(libros[i]);
             }
         }
