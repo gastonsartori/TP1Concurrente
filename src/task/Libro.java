@@ -4,26 +4,24 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class Libro {
 
-    private int reviews, reads, id;
+    private int reviews, reads;
     private boolean versionFinal, lecturaFinal;
     private ReentrantReadWriteLock lock;
     private Object readsKey;
 
 
-    public Libro(int id) {
+    public Libro() {
         reviews=0;
         reads=0;
         versionFinal=false;
         lecturaFinal=false; // indica que fue leido por los 20 lectores en versión final.
         lock=new ReentrantReadWriteLock();
-        this.id = id;
         readsKey=new Object();
     }
 
     public ReentrantReadWriteLock getLock() {
         return lock;
     }
-    public int getId() { return id; }
 
     public int getReviews() { return reviews; }
 

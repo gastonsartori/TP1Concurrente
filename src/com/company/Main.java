@@ -16,7 +16,7 @@ public class Main {
 
         //Inicializo los escritores
         for (int i = 0; i < escritores.length; i++) {
-            escritores[i] = new Thread(new Escritor());
+            escritores[i] = new Thread(new Escritor(), "escritor");
             escritores[i].start();
         }
 

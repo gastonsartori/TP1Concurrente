@@ -7,16 +7,13 @@ import static java.lang.Thread.sleep;
 public class Escritor implements Runnable{
 
     Random rand = new Random();
-    private ArrayList<Integer> librosRevisados= new ArrayList<>();
-    private Libro[] libros = Biblioteca.getLibros(); //tiene los libros de la biblioteca
-
+    private ArrayList<Libro> librosNoRevisados = new ArrayList<>(Biblioteca.getLibros());
     @Override
     public void run() {
-        while(librosRevisados.size() < 24){
-            int i = rand.nextInt(24); //Elige un nro random para ubicar el indice del libro
-            if(!librosRevisados.contains(i)){
-                revisarLibro(libros[i]);
-            }
+        while(!librosNoRevisados.isEmpty()){
+            int i = rand.nextInt(librosNoRevisados.size()); //Elige un nro random para ubicar el indice del libro
+            revisarLibro(librosNoRevisados.get(i));
+            librosNoRevisados.remove(i);
         }
     }
 
@@ -28,7 +25,6 @@ public class Escritor implements Runnable{
             e.printStackTrace();
         } finally{
             libro.incReviews();
-            librosRevisados.add(libro.getId()); //no se controla porque es de este Thread
             libro.getLock().writeLock().unlock();
         }
 

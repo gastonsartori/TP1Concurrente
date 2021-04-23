@@ -1,28 +1,31 @@
 package task;
 
+import java.util.ArrayList;
+
 public class Biblioteca {
 
-    private static Libro[] libros = new Libro[24]; //Utilizamos static pq estamos en un contexto estático.
+    private static ArrayList<Libro> libros = new ArrayList<>(); //Utilizamos static pq estamos en un contexto estático.
+    private int cantidadLibros = 24;
 
     public Biblioteca() {
 
         //Se crean los libros primero...
-        for (int i=0; i< libros.length;i++){
-            libros[i]=new Libro(i);
+        for (int i=0; i < cantidadLibros;i++){
+            libros.add(new Libro());
         }
     }
 
     public boolean verify(){
         int cont = 0;
-        for (int i = 0; i < libros.length; i++) {
-            if(libros[i].getReads() == 20 && libros[i].getReviews() == 10){
+        for (int i = 0; i < cantidadLibros; i++) {
+            if(libros.get(i).getReads() == 20 && libros.get(i).getReviews() == 10){
                 cont++;
             }
         }
         return cont == 24;
     }
 
-    public static Libro[] getLibros() {
+    public static ArrayList<Libro> getLibros() {
         return libros;
     }
 
@@ -33,8 +36,8 @@ public class Biblioteca {
 
     public int lecturasFinales(){
         int cont=0;
-        for (int i = 0; i < libros.length; i++) {
-            if (libros[i].isLecturaFinal()) {
+        for (int i = 0; i < cantidadLibros; i++) {
+            if (libros.get(i).isLecturaFinal()) {
                 cont++;
             }
         }
@@ -42,8 +45,8 @@ public class Biblioteca {
     }
     public int revisionesFinales(){
         int cont=0;
-        for (int i = 0; i < libros.length; i++) {
-            if (libros[i].isVersionFinal()) {
+        for (int i = 0; i < cantidadLibros; i++) {
+            if (libros.get(i).isVersionFinal()) {
                 cont++;
             }
         }
