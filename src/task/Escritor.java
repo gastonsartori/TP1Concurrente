@@ -12,13 +12,21 @@ public class Escritor implements Runnable{
     public void run() {
         while(!librosNoRevisados.isEmpty()){
             int i = rand.nextInt(librosNoRevisados.size()); //Elige un nro random para ubicar el indice del libro
-            revisarLibro(librosNoRevisados.get(i));
+            Libro libroaRevisar=librosNoRevisados.get(i);
+            synchronized (libroaRevisar){
+                libroaRevisar.getLock().writeLock().lock();
+            }
+            revisarLibro(libroaRevisar);
+            synchronized (libroaRevisar){
+                if(!libroaRevisar.getLock().hasQueuedThreads()){
+                    libroaRevisar.notify();
+                }
+            }
             librosNoRevisados.remove(i);
         }
     }
 
     public void revisarLibro(Libro libro){
-        libro.getLock().writeLock().lock();
         try {
             sleep(rand.nextInt(10));
         } catch (InterruptedException e) {

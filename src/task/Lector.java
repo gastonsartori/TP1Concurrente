@@ -11,17 +11,25 @@ public class Lector implements Runnable {
 
     @Override
     public void run() {
-        while(!librosNoLeidosVF.isEmpty()){
+        while (!librosNoLeidosVF.isEmpty()) {
             int i = rand.nextInt(librosNoLeidosVF.size()); //Elige un nro random para ubicar el indice del libro
-                //TODO optimizar la espera cuando quedan pocos libros por leer (1 o 2)
-                //TODO fijarse que el hasQueuedThreads sea DE LECTURA
-
+            Libro libroaLeer = librosNoLeidosVF.get(i);
+            synchronized (libroaLeer) {
+                if (libroaLeer.getLock().isWriteLocked() && libroaLeer.getLock().hasQueuedThreads()) { //si no hay escritor en el libro y no hay cola de espera(esscritores)
+                    try {
+                        libroaLeer.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    libroaLeer.getLock().readLock().lock();
+                }
             }
+            leerLibro(libroaLeer);
         }
+    }
 
-    //TODO Los escritores tienen prioridad por sobre los lectores en el acceso a un libro.
     public void leerLibro(Libro libro){
-        libro.getLock().readLock().lock();
         try {
             sleep(rand.nextInt(100)); //simula el tiempo que demora en leer
         } catch (InterruptedException e) {
