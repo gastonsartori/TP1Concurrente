@@ -33,7 +33,7 @@ public class Libro {
         return versionFinal;
     }
 
-    public boolean getLecturaFinal() { return lecturaFinal;}
+    public boolean isLecturaFinal() { return lecturaFinal;}
 
     public void incReads(){
         synchronized (readsKey){

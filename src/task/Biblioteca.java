@@ -44,7 +44,7 @@ public class Biblioteca {
     public int lecturasFinales(){
         int cont=0;
         for (int i = 0; i < cantidadLibros; i++) {
-            if (libros.get(i).getLecturaFinal()) {
+            if (libros.get(i).isLecturaFinal()) {
                 cont++;
             }
         }
