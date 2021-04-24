@@ -7,7 +7,7 @@ package com.company;
 import task.Biblioteca;
 import task.Escritor;
 import task.Lector;
-import task.Loger;
+import task.Logger;
 
 public class Main {
 
@@ -16,7 +16,7 @@ public class Main {
         Thread[] escritores = new Thread[10]; //Crea un arreglo de escritores
         Thread[] lectores = new Thread[20]; //Crea un arreglo de lectores
 	    boolean finish = false; //set finish como false
-	    Loger logger = new Loger(); //crea un objeto Loggeador
+	    Logger logger = new Logger(); //crea un objeto Loggeador
 
         //Inicializo los escritores
         for (int i = 0; i < escritores.length; i++) {
