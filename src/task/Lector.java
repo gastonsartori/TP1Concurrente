@@ -29,7 +29,6 @@ public class Lector implements Runnable {
             if(libroaLeer.isVersionFinal())
                 librosNoLeidosVF.remove(i);
         }
-        System.out.println("while lector");
     }
 
     public void leerLibro(Libro libro){
