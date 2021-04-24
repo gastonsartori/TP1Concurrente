@@ -1,3 +1,4 @@
+
 package task;
 
 import java.util.ArrayList;
@@ -7,9 +8,8 @@ public class Biblioteca {
     private static ArrayList<Libro> libros = new ArrayList<>(); //Utilizamos static pq estamos en un contexto estático.
     private int cantidadLibros = 24;
 
-    public Biblioteca() {
 
-        //Se crean los libros primero...
+    public Biblioteca() {
         for (int i=0; i < cantidadLibros;i++){
             libros.add(new Libro());
         }
@@ -29,6 +29,10 @@ public class Biblioteca {
         return libros;
     }
 
+    /*
+    @param:
+    @return:
+     */
     public String estadoActual(){
         String cadena= "Cantidad de libros revisados por todos los escritores: " + revisionesFinales() + "\n" + "Cantidad de libros leidos por todos los lectores en versión final: " + lecturasFinales();
         return cadena;

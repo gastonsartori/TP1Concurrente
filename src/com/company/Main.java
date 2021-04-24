@@ -1,3 +1,7 @@
+/*
+@author: Perseverance
+@version: 3.4
+ */
 package com.company;
 
 import task.Biblioteca;
@@ -8,15 +12,15 @@ import task.Loggeador;
 public class Main {
 
     public static void main(String[] args) {
-	    Biblioteca biblioteca = new Biblioteca();
-        Thread[] escritores = new Thread[10];
-        Thread[] lectores = new Thread[20];
-	    boolean finish = false;
-	    Loggeador logger = new Loggeador();
+	    Biblioteca biblioteca = new Biblioteca(); //Crea un objeto biblioteca
+        Thread[] escritores = new Thread[10]; //Crea un arreglo de escritores
+        Thread[] lectores = new Thread[20]; //Crea un arreglo de lectores
+	    boolean finish = false; //set finish como false
+	    Loggeador logger = new Loggeador(); //crea un objeto Loggeador
 
         //Inicializo los escritores
         for (int i = 0; i < escritores.length; i++) {
-            escritores[i] = new Thread(new Escritor(), "escritor");
+            escritores[i] = new Thread(new Escritor(), "escritor"); //El nombre luego se vera en TODO
             escritores[i].start();
         }
 
