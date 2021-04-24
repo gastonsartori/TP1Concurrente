@@ -24,6 +24,7 @@ public class Escritor implements Runnable{
             }
             librosNoRevisados.remove(i);
         }
+        System.out.println("while escritor");
     }
 
     public void revisarLibro(Libro libro){
