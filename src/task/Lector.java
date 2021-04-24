@@ -26,7 +26,7 @@ public class Lector implements Runnable {
                 }
             }
             leerLibro(libroaLeer);
-            if(libroaLeer.isVersionFinal())
+            if(libroaLeer.getVersionFinal())
                 librosNoLeidosVF.remove(i);
         }
         System.out.println("while lector");
@@ -40,7 +40,7 @@ public class Lector implements Runnable {
         } finally{
             libro.getLock().readLock().unlock(); //asegura que se libera el lock(); evita deadlock
         }
-        if(libro.isVersionFinal()){ //si solo si es version final
+        if(libro.getVersionFinal()){ //si solo si es version final
             libro.incReads(); //incrementa la variable reads de libro leido
         }
    }

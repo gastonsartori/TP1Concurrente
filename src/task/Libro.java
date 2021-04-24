@@ -29,12 +29,11 @@ public class Libro {
         return reads;
     }
 
-    public boolean isVersionFinal() {
+    public boolean getVersionFinal() {
         return versionFinal;
     }
 
     public boolean isLecturaFinal() { return lecturaFinal;}
-
 
     public void incReads(){
         synchronized (readsKey){

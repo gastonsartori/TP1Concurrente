@@ -20,7 +20,6 @@ public class Biblioteca {
         for (int i = 0; i < cantidadLibros; i++) {
             /*
             Se asegura de que haya leidos en VF 20 libros revisados por c/escritor
-            (10 escritores)
              */
             if(libros.get(i).getReads() == 20 && libros.get(i).getReviews() == 10){
                 cont++;
@@ -54,7 +53,7 @@ public class Biblioteca {
     public int revisionesFinales(){
         int cont=0;
         for (int i = 0; i < cantidadLibros; i++) {
-            if (libros.get(i).isVersionFinal()) {
+            if (libros.get(i).getVersionFinal()) {
                 cont++;
             }
         }
