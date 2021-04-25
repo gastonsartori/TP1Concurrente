@@ -30,10 +30,18 @@ public class Lector implements Runnable {
                     libroaLeer.getLock().readLock().lock();
                 }
             }
+            comprobarVF(libroaLeer, i);
             leerLibro(libroaLeer);
-            if(libroaLeer.getVersionFinal())
-                librosNoLeidosVF.remove(i);
         }
+    }
+
+    /*
+    Comprueba version final antes de mandar el hilo a dormir
+    Evita que mientras el hilo duerme la variable versionFinal pueda llegar a cambiar
+     */
+    public void comprobarVF(Libro libroaLeer, int i){
+        if(libroaLeer.getReviews() == 10)
+            librosNoLeidosVF.remove(i);
     }
 
     public void leerLibro(Libro libro){
@@ -44,7 +52,7 @@ public class Lector implements Runnable {
         } finally{
             libro.getLock().readLock().unlock(); //asegura que se libera el lock(); evita deadlock
         }
-        if(libro.getVersionFinal()){ //si solo si es version final
+        if(libro.getReviews() == 10){ //si solo si es version final
             libro.incReads(); //incrementa la variable reads de libro leido
         }
    }

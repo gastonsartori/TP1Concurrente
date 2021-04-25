@@ -78,7 +78,7 @@ public class Biblioteca {
     public int revisionesFinales(){
         int cont=0;
         for (int i = 0; i < cantidadLibros; i++) {
-            if (libros.get(i).getVersionFinal()) {
+            if (libros.get(i).getReviews() == 10) {
                 cont++;
             }
         }

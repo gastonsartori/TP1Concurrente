@@ -48,10 +48,6 @@ public class Libro {
         }
     }
 
-    public boolean getVersionFinal() {
-        return versionFinal;
-    }
-
     public boolean isLecturaFinal() { return lecturaFinal;}
 
     public void incReads(){
