@@ -1,16 +1,7 @@
 /*
 @Clase: Libro
 Modela el comportamiento de un Libro
-@atrib: reviews, reads, versionFinal, lecturaFinal, lock, readsKey
-@contruct: public Libro();
-@metodos:
--public ReentrantReadWriteLock getLock();
--public int getReviews();
--public int getReads();
--public boolean getVersionFinal();
--public boolean isLecturaFinal();
--public void incReads();
--public void incReviews();
+@atrib: reviews, reads, versionFinal, lecturaFinal, lock, readsKey, reviewsKey
  */
 package task;
 
@@ -21,7 +12,7 @@ public class Libro {
     private int reviews, reads;
     private boolean versionFinal, lecturaFinal;
     private ReentrantReadWriteLock lock;
-    private Object readsKey;
+    private Object readsKey, reviewsKey;
 
 
     public Libro() {
@@ -31,15 +22,30 @@ public class Libro {
         lecturaFinal=false;
         lock=new ReentrantReadWriteLock();
         readsKey=new Object();
+        reviewsKey = new Object();
     }
     public ReentrantReadWriteLock getLock() {
         return lock;
     }
 
-    public int getReviews() { return reviews; }
+    /*
+    @return: reviews
+    retorna la cantidad de revisiones que obtuvo el libro
+     */
+    public int getReviews() {
+        synchronized (reviewsKey) {
+            return reviews;
+        }
+    }
 
+    /*
+    @return: reads
+    retorn la cantidad de veces que el Libro fue leido.
+     */
     public int getReads() {
-        return reads;
+        synchronized (readsKey) {
+            return reads;
+        }
     }
 
     public boolean getVersionFinal() {
