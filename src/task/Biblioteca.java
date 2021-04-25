@@ -1,4 +1,7 @@
-
+/*
+@Clase: Biblioteca
+Modela el comportamiento de una Biblioteca que contiene 24 Libros.
+ */
 package task;
 
 import java.util.ArrayList;
@@ -9,12 +12,21 @@ public class Biblioteca {
     private int cantidadLibros = 24;
 
 
+    /*
+    @Constructor: Biblioteca
+    Inicializa los 24 Libros por defecto y los agrega a la lista de libros.
+     */
     public Biblioteca() {
         for (int i=0; i < cantidadLibros;i++){
             libros.add(new Libro());
         }
     }
 
+    /*
+    @see: Desde Libros -> [getReads() ; getReviews]
+    @return: boolean
+    Indica si se llego a las 20 lecturas y 10 revisiones de cada Libro.
+     */
     public boolean verify(){
         int cont = 0;
         for (int i = 0; i < cantidadLibros; i++) {
@@ -28,19 +40,28 @@ public class Biblioteca {
         return cont == 24;
     }
 
+    /*
+    @return: static ArrayList<Libro>
+    retorna la lista estatica de libros que contiene la Biblioteca
+     */
     public static ArrayList<Libro> getLibros() {
         return libros;
     }
 
     /*
-    @param:
-    @return:
+    @return: String
+    @see: [revisionesFinales() ; lecturasFinales()]
+    retorna una texto que describe el estado actual de la Biblioteca.
      */
     public String estadoActual(){
         String cadena= "Cantidad de libros revisados por todos los escritores: " + revisionesFinales() + "\n" + "Cantidad de libros leidos por todos los lectores en versión final: " + lecturasFinales();
         return cadena;
     }
 
+    /*
+    Este metodo evalua si cada libro tuvo su lectura final, y luego incrementa la variable cont.
+    @return: cont
+     */
     public int lecturasFinales(){
         int cont=0;
         for (int i = 0; i < cantidadLibros; i++) {
@@ -50,6 +71,10 @@ public class Biblioteca {
         }
         return cont;
     }
+    /*
+    Este metodo evalua si cada libro tuvo su revision final, y luego incrementa la variable cont.
+    @return: cont
+     */
     public int revisionesFinales(){
         int cont=0;
         for (int i = 0; i < cantidadLibros; i++) {

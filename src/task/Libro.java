@@ -1,3 +1,17 @@
+/*
+@Clase: Libro
+Modela el comportamiento de un Libro
+@atrib: reviews, reads, versionFinal, lecturaFinal, lock, readsKey
+@contruct: public Libro();
+@metodos:
+-public ReentrantReadWriteLock getLock();
+-public int getReviews();
+-public int getReads();
+-public boolean getVersionFinal();
+-public boolean isLecturaFinal();
+-public void incReads();
+-public void incReviews();
+ */
 package task;
 
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -14,11 +28,10 @@ public class Libro {
         reviews=0;
         reads=0;
         versionFinal=false;
-        lecturaFinal=false; // indica que fue leido por los 20 lectores en versión final.
+        lecturaFinal=false;
         lock=new ReentrantReadWriteLock();
         readsKey=new Object();
     }
-
     public ReentrantReadWriteLock getLock() {
         return lock;
     }

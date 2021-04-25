@@ -1,6 +1,7 @@
 /*
 @author: Perseverance
-@version: 3.4
+@version: 1.1
+@Clase: Main
  */
 package com.company;
 
@@ -11,25 +12,35 @@ import task.Logger;
 
 public class Main {
 
+    /*
+    Metodo principal donde corre el programa.
+    Se crea la biblioteca, se crean arreglos del tipo Threads que contendran los escritores y los lectores.
+    Setea un boolean para la finalizacion del programa.
+    Crea el objeto Logger para luego escribir las actualizaciones durante la ejecucion del programa.
+     */
     public static void main(String[] args) {
-	    Biblioteca biblioteca = new Biblioteca(); //Crea un objeto biblioteca
-        Thread[] escritores = new Thread[10]; //Crea un arreglo de escritores
-        Thread[] lectores = new Thread[20]; //Crea un arreglo de lectores
-	    boolean finish = false; //set finish como false
-	    Logger logger = new Logger(); //crea un objeto Loggeador
+	    Biblioteca biblioteca = new Biblioteca();
+        Thread[] escritores = new Thread[10];
+        Thread[] lectores = new Thread[20];
+	    boolean finish = false;
+	    Logger logger = new Logger();
 
-        //Inicializo los escritores
+        /*
+        Los siguientes bucles inicializan Threads a partir de un target's Runnable's de la clase Escritores y Lectores
+         */
         for (int i = 0; i < escritores.length; i++) {
             escritores[i] = new Thread(new Escritor(), "escritor");
             escritores[i].start();
         }
-
-        //Inicializo los lectores
         for (int i = 0; i < lectores.length; i++) {
             lectores[i] = new Thread(new Lector());
             lectores[i].start();
         }
 
+        /*
+        Este bucle imprime por pantalla el estado de la biblioteca cada 2 seg.
+        Ademas evalua el estado de los lectores y escritores para saber si finalizaron sus respectivas tareas.
+         */
 	    while(!finish){
             logger.escribir(biblioteca.estadoActual());
             finish = true;
