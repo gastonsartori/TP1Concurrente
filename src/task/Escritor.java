@@ -35,14 +35,14 @@ public class Escritor implements Runnable{
     public void notificarLectores(Libro libro){
         synchronized (libro){
             if(!libro.getLock().hasQueuedThreads()){
-                libro.notify();
+                libro.notifyAll();
             }
         }
     }
 
     public void revisarLibro(Libro libro){
         try {
-            sleep(rand.nextInt(10));
+            sleep(rand.nextInt(100));
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally{

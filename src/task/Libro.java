@@ -11,7 +11,7 @@ public class Libro {
 
     private int reviews, reads;
     private ReentrantReadWriteLock lock;
-    private Object readsKey, reviewsKey;
+    private final Object readsKey, reviewsKey;
 
 
     public Libro() {
@@ -47,7 +47,6 @@ public class Libro {
     public void incReads(){
         synchronized (readsKey){
             reads++;
-            System.out.println(reads);
         }
     }
     public void incReviews(){

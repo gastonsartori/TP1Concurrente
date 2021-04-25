@@ -41,21 +41,23 @@ public class Lector implements Runnable {
 
     public void leerLibro(Libro libro){
         try {
-            sleep(rand.nextInt(10)); //simula el tiempo que demora en leer
+            sleep(rand.nextInt(100)); //simula el tiempo que demora en leer
         } catch (InterruptedException e) {
             e.printStackTrace(); //busca la ruta del error
         } finally{
+            if(libro.getReviews() == 10){ //si solo si es version final
+                libro.incReads(); //incrementa la variable reads de libro leido
+            }
             libro.getLock().readLock().unlock(); //asegura que se libera el lock(); evita deadlock
         }
-        if(libro.getReviews() == 10){ //si solo si es version final
-            libro.incReads(); //incrementa la variable reads de libro leido
-        }
+
    }
 
     public void pedirReadLock(Libro libro) {
         synchronized (libro) {
             if (libro.getLock().isWriteLocked() || libro.getLock().hasQueuedThreads()) { //si no hay escritor en el libro y no hay cola de espera(esscritores)
                 try {
+                    System.out.println("dormir");
                     libro.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();

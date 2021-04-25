@@ -27,7 +27,7 @@ public class Main {
 
         /*
         Los siguientes bucles inicializan Threads a partir de un target's Runnable's de la clase Escritores y Lectores
-         */
+        */
         for (int i = 0; i < escritores.length; i++) {
             escritores[i] = new Thread(new Escritor(), "escritor");
             escritores[i].start();
