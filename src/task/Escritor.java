@@ -13,6 +13,7 @@ public class Escritor implements Runnable{
 
     Random rand = new Random();
     private ArrayList<Libro> librosNoRevisados = new ArrayList<>(Biblioteca.getLibros());
+
     @Override
     public void run() {
         while(!librosNoRevisados.isEmpty()){

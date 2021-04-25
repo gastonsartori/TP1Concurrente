@@ -17,6 +17,7 @@ public class Lector implements Runnable {
     @Override
     public void run() {
         while (!librosNoLeidosVF.isEmpty()) {
+            boolean isVf = false;
             int i = rand.nextInt(librosNoLeidosVF.size()); //Elige un nro random para ubicar el indice del libro
             Libro libroaLeer = librosNoLeidosVF.get(i);
             synchronized (libroaLeer) {
@@ -30,8 +31,9 @@ public class Lector implements Runnable {
                     libroaLeer.getLock().readLock().lock();
                 }
             }
-            comprobarVF(libroaLeer, i);
+            isVf=comprobarVF(libroaLeer);
             leerLibro(libroaLeer);
+            if (isVf) {marcarLibroLeido(i);}
         }
     }
 
@@ -39,9 +41,14 @@ public class Lector implements Runnable {
     Comprueba version final antes de mandar el hilo a dormir
     Evita que mientras el hilo duerme la variable versionFinal pueda llegar a cambiar
      */
-    public void comprobarVF(Libro libroaLeer, int i){
-        if(libroaLeer.getReviews() == 10)
-            librosNoLeidosVF.remove(i);
+    public boolean comprobarVF(Libro libroaLeer){
+        if(libroaLeer.getReviews() == 10){
+            return true;
+        }
+        return false;
+    }
+    public void marcarLibroLeido(int i){
+        librosNoLeidosVF.remove(i);
     }
 
     public void leerLibro(Libro libro){
