@@ -12,7 +12,7 @@ import static java.lang.Thread.sleep;
 public class Lector implements Runnable {
 
     Random rand = new Random(); //se usa para ver los tiempos en mls.
-    private ArrayList<Libro> librosNoLeidosVF = new ArrayList<>(Biblioteca.getLibros()); //se usa para ver los indices de los libros leidos en version final.
+    private final ArrayList<Libro> librosNoLeidosVF = new ArrayList<>(Biblioteca.getLibros()); //se usa para ver los indices de los libros leidos en version final.
 
     @Override
     public void run() {
@@ -20,17 +20,7 @@ public class Lector implements Runnable {
             boolean isVf = false;
             int i = rand.nextInt(librosNoLeidosVF.size()); //Elige un nro random para ubicar el indice del libro
             Libro libroaLeer = librosNoLeidosVF.get(i);
-            synchronized (libroaLeer) {
-                if (libroaLeer.getLock().isWriteLocked() && libroaLeer.getLock().hasQueuedThreads()) { //si no hay escritor en el libro y no hay cola de espera(esscritores)
-                    try {
-                        libroaLeer.wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    libroaLeer.getLock().readLock().lock();
-                }
-            }
+            pedirReadLock(libroaLeer);
             isVf=comprobarVF(libroaLeer);
             leerLibro(libroaLeer);
             if (isVf) {marcarLibroLeido(i);}
@@ -40,13 +30,11 @@ public class Lector implements Runnable {
     /*
     Comprueba version final antes de mandar el hilo a dormir
     Evita que mientras el hilo duerme la variable versionFinal pueda llegar a cambiar
-     */
+    */
     public boolean comprobarVF(Libro libro){
-        if(libro.getReviews() == 10){
-            return true;
-        }
-        return false;
+        return libro.getReviews() == 10;
     }
+
     public void marcarLibroLeido(int i){
         librosNoLeidosVF.remove(i);
     }
@@ -63,4 +51,18 @@ public class Lector implements Runnable {
             libro.incReads(); //incrementa la variable reads de libro leido
         }
    }
+
+    public void pedirReadLock(Libro libro){
+        synchronized (libro) {
+            if (libro.getLock().isWriteLocked() && libro.getLock().hasQueuedThreads()) { //si no hay escritor en el libro y no hay cola de espera(esscritores)
+                try {
+                    libro.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                libro.getLock().readLock().lock();
+            }
+        }
+    }
 }
