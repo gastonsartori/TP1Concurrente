@@ -1,3 +1,8 @@
+/*
+@Clase: Lector
+Modela el comportamiento de una Lector que debe leer 24 Libros con todas las precauciones necesarias de
+escritura/lectura que se deben tener en contextos de concurrencia.
+ */
 package task;
 
 import java.util.ArrayList;
