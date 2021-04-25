@@ -41,8 +41,8 @@ public class Lector implements Runnable {
     Comprueba version final antes de mandar el hilo a dormir
     Evita que mientras el hilo duerme la variable versionFinal pueda llegar a cambiar
      */
-    public boolean comprobarVF(Libro libroaLeer){
-        if(libroaLeer.getReviews() == 10){
+    public boolean comprobarVF(Libro libro){
+        if(libro.getReviews() == 10){
             return true;
         }
         return false;
