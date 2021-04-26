@@ -11,7 +11,7 @@ public class Libro {
 
     private int reviews, reads;
     private ReentrantReadWriteLock lock;
-    private final Object readsKey, reviewsKey;
+    private final Object readsKey;
 
 
     public Libro() {
@@ -19,7 +19,6 @@ public class Libro {
         reads=0;
         lock=new ReentrantReadWriteLock();
         readsKey=new Object();
-        reviewsKey = new Object();
     }
     public ReentrantReadWriteLock getLock() {
         return lock;
@@ -29,11 +28,7 @@ public class Libro {
     @return: reviews
     retorna la cantidad de revisiones que obtuvo el libro
      */
-    public int getReviews() {
-        synchronized (reviewsKey) {
-            return reviews;
-        }
-    }
+    public int getReviews() { return reviews; }
     /*
     @return: reads
     retorn la cantidad de veces que el Libro fue leido.
@@ -49,9 +44,8 @@ public class Libro {
             reads++;
         }
     }
+
     public void incReviews(){
-        synchronized (reviewsKey) {
             reviews++;
-        }
     }
 }
