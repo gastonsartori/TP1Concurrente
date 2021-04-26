@@ -27,24 +27,21 @@ public class Biblioteca {
     @return: boolean
     Indica si se llego a las 20 lecturas y 10 revisiones de cada Libro.
      */
-    public boolean verify(){
-        int cont = 0;
+    public void verify(){
         for (int i = 0; i < cantidadLibros; i++) {
             /*
             Se asegura de que haya leidos en VF 20 libros revisados por c/escritor
              */
-            if(libros.get(i).getReads() == 20 && libros.get(i).getReviews() == 10){
-                cont++;
-            }
+            System.out.println("LIBRO " + i + "--> Reviews=" + libros.get(i).getReads() + " Reads= " + libros.get(i).getReviews() + "\n");
         }
-        return cont == 24;
+
     }
 
     /*
     @return: static ArrayList<Libro>
     retorna la lista estatica de libros que contiene la Biblioteca
      */
-    public static ArrayList<Libro> getLibros() {
+    public static ArrayList<Libro> getLibros(){
         return libros;
     }
 

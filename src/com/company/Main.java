@@ -57,9 +57,8 @@ public class Main {
             }
         }
 
-        if(biblioteca.verify()){
-            System.out.println("Libros verificados correctamente");
-        }
+        biblioteca.verify();
+
 
     }
 }

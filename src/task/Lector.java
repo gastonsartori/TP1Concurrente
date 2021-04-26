@@ -17,16 +17,17 @@ public class Lector implements Runnable {
     @Override
     public void run() {
         while (!librosNoLeidosVF.isEmpty()) {
-            boolean isVf = false;
+
             int i = rand.nextInt(librosNoLeidosVF.size()); //Elige un nro random para ubicar el indice del libro
+
             Libro libroaLeer = librosNoLeidosVF.get(i);
+
             pedirReadLock(libroaLeer);
-            isVf=comprobarVF(libroaLeer);
-            leerLibro(libroaLeer);
-            if (isVf) {marcarLibroLeido(i);}
+
+            leerLibro(libroaLeer,i);
+
         }
     }
-
     /*
     Comprueba version final antes de mandar el hilo a dormir
     Evita que mientras el hilo duerme la variable versionFinal pueda llegar a cambiar
@@ -39,14 +40,16 @@ public class Lector implements Runnable {
         librosNoLeidosVF.remove(i);
     }
 
-    public void leerLibro(Libro libro){
+    public void leerLibro(Libro libro,int i){
+
         try {
-            sleep(rand.nextInt(100)); //simula el tiempo que demora en leer
+            sleep(rand.nextInt(200)); //simula el tiempo que demora en leer
         } catch (InterruptedException e) {
             e.printStackTrace(); //busca la ruta del error
         } finally{
-            if(libro.getReviews() == 10){ //si solo si es version final
-                libro.incReads(); //incrementa la variable reads de libro leido
+            if (comprobarVF(libro)){
+                libro.incReads();
+                marcarLibroLeido(i);
             }
             libro.getLock().readLock().unlock(); //asegura que se libera el lock(); evita deadlock
         }
@@ -55,9 +58,8 @@ public class Lector implements Runnable {
 
     public void pedirReadLock(Libro libro) {
         synchronized (libro) {
-            if (libro.getLock().isWriteLocked() || libro.getLock().hasQueuedThreads()) { //si no hay escritor en el libro y no hay cola de espera(esscritores)
+            while(libro.getLock().isWriteLocked() || libro.getLock().hasQueuedThreads()) { //si no hay escritor en el libro y no hay cola de espera(esscritores)
                 try {
-                    System.out.println("dormir");
                     libro.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
