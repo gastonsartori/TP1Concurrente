@@ -31,7 +31,7 @@ public class Biblioteca {
             /*
             Se asegura de que haya leidos en VF 20 libros revisados por c/escritor
              */
-            System.out.println("LIBRO " + i + "--> Reviews=" + libros.get(i).getReads() + " Reads= " + libros.get(i).getReviews() + "\n");
+            System.out.println("LIBRO " + i + "--> Reviews=" + libros.get(i).getReviews() + " Reads= " + libros.get(i).getReads() + "\n");
         }
 
     }
