@@ -32,8 +32,10 @@ public class Escritor implements Runnable{
     }
 
     public void pedirWriteLock(Libro libro){
+        libro.incEscritorEntrante();
         synchronized (libro){
             libro.getLock().writeLock().lock();
+            libro.decEscritorEntrante();
         }
     }
 

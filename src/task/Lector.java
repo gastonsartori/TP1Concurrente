@@ -58,7 +58,7 @@ public class Lector implements Runnable {
 
     public void pedirReadLock(Libro libro) {
         synchronized (libro) {
-            while(libro.getLock().isWriteLocked() || libro.getLock().hasQueuedThreads()) { //si no hay escritor en el libro y no hay cola de espera(esscritores)
+            while(libro.getLock().isWriteLocked() || libro.getLock().hasQueuedThreads() || libro.getEscritorEntrante()!=0) { //si no hay escritor en el libro y no hay cola de espera(esscritores)
                 try {
                     libro.wait();
                 } catch (InterruptedException e) {

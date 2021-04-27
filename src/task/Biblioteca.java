@@ -11,7 +11,6 @@ public class Biblioteca {
     private static ArrayList<Libro> libros = new ArrayList<>(); //Utilizamos static pq estamos en un contexto estático.
     private int cantidadLibros = 24;
 
-
     /*
     @Constructor: Biblioteca
     Inicializa los 24 Libros por defecto y los agrega a la lista de libros.

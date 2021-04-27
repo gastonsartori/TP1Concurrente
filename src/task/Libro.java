@@ -11,17 +11,35 @@ public class Libro {
 
     private int reviews, reads;
     private ReentrantReadWriteLock lock;
-    private final Object readsKey;
+    private final Object readsKey, cerrojoEntrada;
+    private int escritorEntrante;
 
 
     public Libro() {
         reviews=0;
         reads=0;
+        escritorEntrante=0;
         lock=new ReentrantReadWriteLock();
         readsKey=new Object();
+        cerrojoEntrada= new Object();
+
     }
     public ReentrantReadWriteLock getLock() {
         return lock;
+    }
+
+    public int getEscritorEntrante(){
+        return escritorEntrante;
+    }
+
+    public void incEscritorEntrante(){
+        synchronized (cerrojoEntrada){
+            escritorEntrante++;
+        }
+    }
+
+    public void decEscritorEntrante(){
+            escritorEntrante--;
     }
 
     /*
